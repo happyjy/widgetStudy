@@ -7,9 +7,7 @@ if (!window.ecount) window.ecount = {};
  * * mvvm
  *    - view, viewmodel은 데이터 중심으로 frontend 구조를 변경하는 것이다.
  *    - viewmodel: view를 추상화한 layer(view를 가지고 있는 data == state)
- * 
- *  
- * 
+ *
  * * state - view에 종속된 상태 정보
  *    component state - focus를 가지는 el 상태 집합
  *    component - 포커스를 가지는 el/ c-index를 가지고 있음/ c-index를 가지고 있는 el/ enter로 기동이 가능한 el
@@ -32,11 +30,38 @@ ecount.control = class {
     }
 }
 
+ecount.control.codes = class extends ecount.control {
+  // # widget만들때 고려해야 할 것 
+  //1. state 설계
+  //2.  
+}
 
-ecount.control.input = class extends ecount.control {
+//viewModel
+ecount.control.input = class {
     constructor(options) {
-        super(options);
+        // super(options);
+        this.options = options;
+        //readonly, display toggle 
+        this._state = {
+          readonly: false,
+          display: true
+        };
 
+        this.ecview = new ecount.control.input.view();
+    }
+    render($parent){
+      this.ecview.render($parent)
+    }
+    getTitle(){
+      return this.options.id;
+    }
+    setReadonly(readonly){
+      this.setState("reaondly", readonly);
+    }
+    setState(path, state){
+      if(this.getState(path) != state){
+        //view update
+      }
     }
 
     //개별 랜더 후 body에 붙이기
@@ -57,6 +82,18 @@ ecount.control.input = class extends ecount.control {
     reset() {}
 }
 
+ecount.control.input.view = class {
+  constructor(){
+
+  }
+  getTemplate() {
+    return `<input type='text'>`;
+  }
+  render($parent){
+    $parent.append($(this.getTemplate()));
+  }
+}
+
 ecount.control.radio = class extends ecount.control {
     constructor(options) {
         super(options);
@@ -75,3 +112,5 @@ ecount.control.radio = class extends ecount.control {
         }).join("");
     }
 }
+
+
