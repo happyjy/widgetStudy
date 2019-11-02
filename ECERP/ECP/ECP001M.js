@@ -25,8 +25,11 @@ ecount.page.factory("ecount.page", "ECP001M", {
 
         const form = new ecount.layout.form();
         form.add(input);
-        // form.add(radio);
+        form.add(radio);
         form.render(contents);
+
+        input.setReadonly(true);
+        input.hide();
     },
 
     onInitFooter: function() {

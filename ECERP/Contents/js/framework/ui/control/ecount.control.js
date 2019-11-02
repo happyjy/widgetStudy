@@ -41,6 +41,7 @@ ecount.control.input = class {
     constructor(options) {
         // super(options);
         this.options = options;
+
         //readonly, display toggle 
         this._state = {
           readonly: false,
@@ -49,18 +50,37 @@ ecount.control.input = class {
 
         this.ecview = new ecount.control.input.view();
     }
+
     render($parent){
       this.ecview.render($parent)
     }
+
     getTitle(){
       return this.options.id;
     }
-    setReadonly(readonly){
-      this.setState("reaondly", readonly);
+
+    getState(path){
+      return this._state[path];
     }
+
+    setReadonly(readonly){
+      this.setState("readonly", readonly);
+    }
+
+    hide(){
+      this.setState("display", false);
+    }
+
     setState(path, state){
       if(this.getState(path) != state){
         //view update
+        this.ecview.update(path, state);
+      }
+    }
+
+    notify(path, state){
+      if(this.ecview){
+        this.ecview.update(path, state);
       }
     }
 
@@ -86,11 +106,37 @@ ecount.control.input.view = class {
   constructor(){
 
   }
+
   getTemplate() {
     return `<input type='text'>`;
   }
+
   render($parent){
-    $parent.append($(this.getTemplate()));
+    this.$el = $(this.getTemplate())
+    $parent.append(this.$el);
+  }
+
+  update(path, state){
+    // debugger;
+    this['onChange' + path](state);
+    // this[]();
+  }
+
+  //readonly:  change background color
+  onChangereadonly(state){
+    this.$el
+      .css({
+        'background': state ? 'gray': '#fffff'
+      })
+      .attr("readonly", state);
+  }
+
+  onChangedisplay(state) {
+    if (state) {
+      this.$el.show();
+    } else {
+      this.$el.remove();
+    }
   }
 }
 
