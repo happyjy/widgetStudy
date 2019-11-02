@@ -44,8 +44,17 @@ ecount.control.input = class {
 
         //readonly, display toggle 
         this._state = {
-          readonly: false,
-          display: true
+          component:[
+            {
+              readonly: false,
+              display: true
+            },
+            {
+              readonly: false,
+              display: true
+            }    
+          ]
+          
         };
 
         this.ecview = new ecount.control.input.view();
