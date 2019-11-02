@@ -1,0 +1,12 @@
+<script>
+    require.define({
+        "ecount.control": "/ECERP/Contents/js/framework/ui/control/ecount.control.js",
+        "ecount.layout": "/ECERP/Contents/js/framework/ui/layout/ecount.layout.js",
+        "ecount.page.list": "/ECERP/Contents/js/framework/ui/page/ecount.page.list.js"
+    });
+
+    window.viewBag = {
+        title: "ECP001M"
+    };
+</script>
+<script src= "/ECERP/ECP/ECP001M.js"></script>

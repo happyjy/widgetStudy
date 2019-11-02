@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <!-- <script src="/ECERP/js/lib/require.js"></script> -->
+        <script src= "/ECERP/Contents/js/lib/jquery-3.4.1.js"></script>  
+        <script src= "/ECERP/Contents/js/framework/ecount.router.js"></script>
+        <script src= "/ECERP/Contents/js/framework/ecount.require.js"></script>
+        <script src= "/ECERP/Contents/js/framework/ui/page/ecount.page.js"></script>
+    </head>
+    <body>
+        <div id="menu">
+            <span onclick="menuClick('ECP001M')">거래처 등록</span>
+            <span onclick="menuClick('ECP002M')">창고 등록</span>
+        </div>
+        <div id="mainPage"></div>
+
+        <script>
+            var menu = {
+                "ECP001M": {
+                    menuType: "1",
+                    submenu: "10000",
+                    url: "/ECERP/ECP/ECP001M"
+                },
+                "ECP002M": {
+                    menuType: "2",
+                    submenu: "20000",
+                    url: "/ECERP/ECP/ECP002M"
+                },
+            };
+            function menuClick(menuId) {
+                ecount.router.route(menuId);
+            }
+
+            function getMenu(menuId) {
+                return menu[menuId].url;
+            }
+
+        </script>
+    </body>
+</html>

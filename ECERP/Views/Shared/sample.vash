@@ -1,0 +1,4 @@
+<script src= "/ECERP/Contents/js/framework/ui/control/ecount.control.js"></script>
+<script src= "/ECERP/Contents/js/lib/jquery-3.4.1.js"></script>
+<script src= "/ECERP/Contents/js/framework/ui/layout/ecount.layout.js"></script>
+<script src= "/ECERP/ECP/sample.js"></script>
